@@ -54,3 +54,17 @@ models:
         description: "кампания"
         tests:
           - not_null
+
+- name: dshatalov_af_installs
+    description: "check_campaign_name"
+    columns:
+      - name: campaign_name
+        description: "название компании"
+        tests:
+          - not_null
+      
+      - name: platform
+        description: "check_platform"
+        tests:
+          - accepted_values:
+              values: ['ios', 'android']
