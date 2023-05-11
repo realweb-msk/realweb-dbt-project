@@ -1,6 +1,19 @@
 version: 2
 
 models:
+  - name: pbatsulin_af_installs
+    description: "Витрина данных, собранных из AppsFlyer и рекламных кабинетов"
+    columns:
+      - name: platform
+        description: "Платформа установки"
+        tests:
+          - accepted_values:
+              values: ['ios', 'android']
+      - name: campaign_name
+        description: "Название кампании"
+        tests:
+          - not_null
+
   - name: my_first_dbt_model
     description: "A starter dbt model"
     columns:
