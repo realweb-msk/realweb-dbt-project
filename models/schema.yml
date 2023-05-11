@@ -27,9 +27,30 @@ models:
         tests:
           - accepted_values:
               values: ['ios', 'android']
-      
+
       - name: appsflyer_id
         description: "id установки"
         tests:
           - unique
           - not_null
+# тест показывает наличие impressions = 0,
+# но если реклама не показана, может ли она иметь скачивания?
+
+  - name: uplusnina_af_installs
+    description: "проверка кампаний и кол-ва показов"
+    columns:
+      - name: impressions
+        description: "показы равны 0"
+      - name: installs
+        description: "скачивания не равны 0"
+        tests:
+          - unique:
+              config:
+                where: 'impressions = 0 AND installs > 0'
+      - name: campaign_name
+        description: "кампания"
+        tests:
+          - not_null
+          - unique:
+              config:
+                where: 'campaign_name = "" OR campaign_name = " " OR campaign_name = "-"'
