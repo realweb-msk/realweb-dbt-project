@@ -33,3 +33,18 @@ models:
         tests:
           - unique
           - not_null
+
+models:
+  - name: erasskosova_af_installs
+    description: "установки приложения"
+    columns:
+      - name: platform
+        description: "Платформа установки"
+        tests:
+          - accepted_values:
+              values: ['ios', 'android']
+              
+      - name: campaign_name
+        description: "Название кампании"
+        tests:
+          - not_null
