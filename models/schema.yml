@@ -33,3 +33,17 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: nguseva_af_installs
+    description: "клики/показы/установки/расходы сгруппированные по дате/кампании/группе объявления/платформе/источнику"
+    columns:
+      - name: platform
+        description: "платформа установки"
+        tests:
+          - accepted_values:
+              values: ['ios', 'android']
+      
+      - name: campaign_name
+        description: "название кампании"
+        tests:
+          - not_null
