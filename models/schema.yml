@@ -32,4 +32,23 @@ models:
         description: "id установки"
         tests:
           - unique
-          - not_null
+          - not_null 
+
+models:
+  - name: iarovaia_af_installs
+    columns:
+      - name: advertising_cabinet
+        description: "right_name_of_company"
+        tests:
+          - accepted_values:
+              values: ['facebook', 'google', 'huawei', 'tiktok', 'vk', 'yandex']
+      - name: platform
+        description: "ios_android_only"
+        tests:
+          - accepted_values:
+              values: ['ios', 'android']
+      - name: campaign_name
+        description: "not_null"
+        tests:
+          - unique
+          - not_null             
