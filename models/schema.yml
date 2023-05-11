@@ -33,3 +33,32 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: ptimoshek_af_installs
+    description: "витрина воронки продаж из рекламных кабинетов"
+    columns:
+      - name: campaign_name
+        description: "названия рекламной кампании"
+        tests:
+          - not_null
+      - name: platform
+        description: "платформа установки"
+        tests:
+          - accepted_values:
+              values: ['ios', 'android']
+      - name: costs_sum
+        description: "траты на рекламу"
+        tests:
+          - not_null
+      - name: installs_sum
+        description: "количество установок"
+        tests:
+          - not_null  
+      - name: clicks_sum
+        description: "количество кликов"
+        tests:
+          - not_null
+      - name: impressions_sum
+        description: "количество показов"
+        tests:
+          - not_null  
