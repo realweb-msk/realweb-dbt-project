@@ -33,3 +33,18 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: idityateva_af_installs
+    description: "агрегированные данные из рекламных кабинетов и apps_flyer"
+    columns:
+      - name: platform
+        description: "платформа установки"
+        tests:
+          - accepted_values:
+              values: ['ios', 'android']
+      
+      - name: campaign_name
+        description: "название рекламной кампании"
+        tests:
+          - not_null
+          
