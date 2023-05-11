@@ -33,3 +33,17 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: ktomnikovskaya_af_installs
+    description: "установки приложения"
+    columns:
+      - name: platform
+        description: "платформа установки"
+        tests:
+          - accepted_values:
+              values: ['ios', 'android']
+
+      - name: campaign_name
+        description: "присутствует название кампании"
+        tests:
+          - not_null
