@@ -33,3 +33,22 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: apopov_af_installs
+    description: "целевая таблица А.Попова"
+    columns:
+      - name: platform
+        description: "платформа установки"
+        tests:
+          - accepted_values:
+              values: ['ios', 'android']
+              
+      - name: campaign_name
+        description: "название кампании"
+        tests:
+          - not_null
+
+      - name: installs
+        description: "количество установок"
+        tests:
+          - not_null
