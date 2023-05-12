@@ -33,3 +33,16 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: dreicherd_af_installs
+    description: "данные из рекл. кабинетов, объединенные с установками из AppsFlyer"
+    columns:
+      - name: platform
+        description: "платформа пользователя"
+        tests:
+          - accepted_values:
+              values: ['ios', 'android']
+      - name: campaign_name
+        description: "название кампании"
+        tests:
+          - not_null
