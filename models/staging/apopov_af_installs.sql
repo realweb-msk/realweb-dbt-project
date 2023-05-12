@@ -51,7 +51,7 @@ af AS ( -- 7327 rows
     GROUP BY 1, 2, 3, 4, 5
 ),
 
-facebook AS ( -- 21045 rows, seems ok
+facebook AS ( 
     SELECT 
         date,
         campaign_name,
@@ -67,7 +67,7 @@ facebook AS ( -- 21045 rows, seems ok
     GROUP BY 1, 2, 3, 4, 5
 ),
 
-google_ads AS ( -- 3899 row, seems ok
+google_ads AS (
     SELECT 
         date,
         campaign_name,
@@ -83,7 +83,7 @@ google_ads AS ( -- 3899 row, seems ok
     GROUP BY 1, 2, 3, 4, 5
 ),
 
-huawei AS ( -- 425, ok
+huawei AS ( 
     SELECT 
         date,
         campaign_name,
@@ -99,7 +99,7 @@ huawei AS ( -- 425, ok
     GROUP BY 1, 2, 3, 4, 5
 ),
 
-mytarget AS ( -- 4773, по сути отсутсвует adset_name = '-' для всех событий
+mytarget AS ( 
     SELECT 
         date,
         campaign_name,
@@ -115,7 +115,7 @@ mytarget AS ( -- 4773, по сути отсутсвует adset_name = '-' дл�
     GROUP BY 1, 2, 3, 4, 5
 ),
 
-tiktok AS ( -- 382 rows, ok
+tiktok AS ( 
     SELECT 
         date,
         campaign_name,
@@ -131,7 +131,7 @@ tiktok AS ( -- 382 rows, ok
     GROUP BY 1, 2, 3, 4, 5
 ),
 
-vkontakte AS ( -- 94 , по сути отсутсвует adset_name = '-' для всех событий
+vkontakte AS ( 
     SELECT 
         date,
         campaign_name,
@@ -147,7 +147,7 @@ vkontakte AS ( -- 94 , по сути отсутсвует adset_name = '-' дл�
     GROUP BY 1, 2, 3, 4, 5
 ),
 
-yandex AS ( -- 5002, есть события adset_name = '--' (453)
+yandex AS ( 
     SELECT 
         date,
         campaign_name,
@@ -163,7 +163,7 @@ yandex AS ( -- 5002, есть события adset_name = '--' (453)
     GROUP BY 1, 2, 3, 4, 5
 ),
 
-all_sources AS ( -- 35620,  4 события без платформы, 5739 непустых
+all_sources AS ( 
     SELECT * FROM facebook
     UNION ALL 
     SELECT * FROM google_ads
@@ -179,7 +179,7 @@ all_sources AS ( -- 35620,  4 события без платформы, 5739 н�
     SELECT * FROM yandex
 ),
 
-all_sources_with_af AS ( -- 40236 rows, 20854 пустых
+all_sources_with_af AS ( 
     SELECT 
         date,
         campaign_name,
