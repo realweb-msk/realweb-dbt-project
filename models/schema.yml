@@ -33,3 +33,22 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: igribenko_af_installs
+    description: "установки приложения"
+    columns:
+      - name: platform
+        description: "платформа установки"
+        tests:
+          - accepted_values:
+              values: ['ios', 'android']
+      
+      - name: campaign_name
+        description: "id установки"
+        tests:
+          - not_null
+      
+      - name: installs
+        description: "id установки"
+        tests:
+          - not_null
