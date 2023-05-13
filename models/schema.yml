@@ -50,3 +50,4 @@ models:
         tests:
           - accepted_values:
               values: ['ios', 'android']
+
