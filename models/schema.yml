@@ -33,3 +33,21 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: echikina_af_installs
+    description: "Название кампании"
+    columns:
+      - name: campaign_name
+        description: "Название кампании"
+        tests:
+          - not_null
+
+  - name: echikina_af_installs
+    description: "Установка приложения"
+    columns:
+      - name: platform
+        description: "Платформа установки"
+        tests:
+          - accepted_values:
+              values: ['ios', 'android']
+
