@@ -33,3 +33,17 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: vpoliakov_af_installs
+    description: "агрегированные данные установок из AF и рекламных кабинетов"
+    columns:
+      - name: campaign_name
+        description: "название рекламной кампании"
+        tests:
+          - not_null
+      
+      - name: platform
+        description: "платформа установки"
+        tests:
+          - accepted_values:
+              values: ['ios', 'android']
