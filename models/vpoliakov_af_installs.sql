@@ -135,7 +135,7 @@ SELECT
     cab.impressions,
 FROM 
     af_hw AS hw
-LEFT JOIN 
+FULL JOIN 
     cab_hw AS cab USING(date, campaign_name, platform)
 ),
 
