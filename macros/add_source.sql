@@ -10,7 +10,8 @@
         SUBSTRING('{{table_name}}', 5, 10) as source,
         SUM(clicks) as clicks,
         SUM(impressions) as impressions,
-        SUM(costs) as costs
+        SUM(costs) as costs,
+        NULL as installs
     FROM {{ref(table_name)}}
     WHERE 
         is_realweb 

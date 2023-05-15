@@ -9,8 +9,6 @@ WITH
                 {{add_source('stg_tiktok')}}
                 UNION ALL 
                 {{add_source('stg_mytarget')}}
-                UNION ALL 
-                {{add_source('stg_google_ads')}}
                 UNION ALL
                 (   SELECT 
                         date,
@@ -20,7 +18,8 @@ WITH
                         'huawei' as source,
                         SUM(clicks) as clicks,
                         SUM(impressions) as impressions,
-                        SUM(costs) as costs
+                        SUM(costs) as costs,
+                        NULL as installs
                     FROM {{ref('stg_huawei_ads')}}
                     WHERE 
                         is_realweb 
@@ -30,6 +29,49 @@ WITH
                         campaign_name,
                         platform
                     )
+                    UNION ALL
+                    (
+                        SELECT date,
+                        campaign_name,
+                        adset_name,
+                        platform,
+                        'facebook' as source,
+                        SUM(clicks) as clicks,
+                        SUM(impressions) as impressions,
+                        SUM(costs) as costs,
+                        SUM(installs) as installs
+                    FROM {{ref('stg_facebook')}}
+                    WHERE 
+                        is_realweb 
+                        AND NOT is_ret_campaign
+                    GROUP BY 
+                        date,
+                        campaign_name,
+                        adset_name,
+                        platform
+                    )
+                    UNION ALL
+                    (
+                        SELECT date,
+                        campaign_name,
+                        adset_name,
+                        platform,
+                        'facebook' as source,
+                        SUM(clicks) as clicks,
+                        SUM(impressions) as impressions,
+                        SUM(costs) as costs,
+                        SUM(installs) as installs
+                    FROM {{ref('stg_google_ads')}}
+                    WHERE 
+                        is_realweb 
+                        AND NOT is_ret_campaign
+                    GROUP BY 
+                        date,
+                        campaign_name,
+                        adset_name,
+                        platform
+                    )
+
                 ),
     installs AS (
         {{installs_counter('stg_af_installs')}}
@@ -44,7 +86,7 @@ WITH
             COALESCE(clicks, 0) AS clicks,
             COALESCE(impressions, 0) AS impressions,
             COALESCE(costs, 0) AS costs,
-            COALESCE(installs, 0) AS installs
+            COALESCE(s.installs, i.installs, 0) AS installs
         FROM sources AS s  
         FULL OUTER JOIN installs AS i ON s.date = i.date   
                                       AND s.campaign_name = i.campaign_name
@@ -57,5 +99,6 @@ SELECT *
 FROM summary
 WHERE (platform = 'ios' OR platform = 'android')
 AND impressions + clicks + costs + installs > 0
+AND source != 'other'
 ORDER BY date
 
