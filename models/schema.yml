@@ -33,3 +33,17 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: amayorova_af_installs
+    description: "Installs app"
+    columns:
+      - name: campaign_name
+        description: "Название кампании"
+        tests:
+          - not_null
+      - name: platform
+        description: "платформа установки"
+        tests:
+          - accepted_values:
+              values: ['ios', 'android']            
+
