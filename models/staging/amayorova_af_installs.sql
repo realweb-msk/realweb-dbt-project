@@ -150,21 +150,17 @@ merged_sources AS (
 full_data AS (
     SELECT       
         mrg.date,
-        IFNULL(mrg.campaign_name, cnt.campaign_name) as campaign_name,
+        mrg.campaign_name as campaign_name,
         mrg.adset_name,
         mrg.platform,
         mrg.source,
-        IFNULL(mrg.installs, cnt.installs) as installs,
+        COALESCE(mrg.installs, cnt.installs) as installs,
         impressions,
         clicks,
         costs
     FROM merged_sources as mrg
     FULL JOIN cnt_installs as cnt
-    ON mrg.date = cnt.date
-        and mrg.campaign_name = cnt.campaign_name
-        and mrg.adset_name = cnt.adset_name
-        and mrg.platform = cnt.platform
-        and mrg.source = cnt.source
+    USING (date, campaign_name, adset_name, platform, source)
 )
 
 SELECT 
