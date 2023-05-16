@@ -44,11 +44,11 @@ models:
               values: ['ios', 'android']
       
       - name: campaign_name
-        description: "id установки"
+        description: "имя компании"
         tests:
           - not_null
       
       - name: installs
-        description: "id установки"
+        description: "количество установок"
         tests:
           - not_null
