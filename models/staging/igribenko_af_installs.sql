@@ -24,7 +24,7 @@ WITH af_installs AS (
 
 huawei AS (
     SELECT date,
-           media_source,
+           'huawei' AS media_source,
            campaign_name,
            NULL AS adset_name,
            platform,
@@ -41,7 +41,7 @@ huawei AS (
                FROM af_installs
                WHERE media_source = 'huawei'
                GROUP BY 1, 2, 3, 4
-              ) AS inst USING(date, campaign_name, platform)
+              ) AS inst USING(date, campaign_name, platform, media_source)
     WHERE is_ret_campaign IS FALSE
       AND is_realweb IS TRUE 
 ),
