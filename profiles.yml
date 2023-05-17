@@ -9,9 +9,9 @@ realweb: # название профиля, которое указали в dbt
       type: bigquery
       method: service-account
       project: realweb-152714 # название проекта в BigQuery
-      dataset: "{{ env_var('DEV_DATASET') }}" # название вашего личного датасета (если его нет, он будет создан)
+      dataset: dbt_skuropatkin #"{{ env_var('DEV_DATASET') }}" # название вашего личного датасета (если его нет, он будет создан)
       threads: 4
-      keyfile: "{{ env_var('PATH_TO_KEYFILE') }}"
+      keyfile: /Users/stepankuropatkin/realweb-dbt-project/dbt_runner_for_realweb.json #"{{ env_var('PATH_TO_KEYFILE') }}"
       timeout_seconds: 300
       location: US
       priority: interactive

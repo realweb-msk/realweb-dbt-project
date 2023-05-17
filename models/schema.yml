@@ -33,3 +33,20 @@ models:
         tests:
           - unique
           - not_null
+
+      - name: skuropatkin_af_installs
+        columns:
+          - name: campaign_name
+            description: "не null компании"
+            tests:
+              - not_null
+
+      - name: skuropatkin_af_installs
+        columns:
+          - name: platform
+            description: "платформа установки приложения"
+            tests:
+              - accepted_values:
+                  values: ['ios', 'android']
+
+
